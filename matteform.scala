@@ -23,7 +23,9 @@ abstract class Form[A](
         def renderInner = same
     }
     
-    def render(in: NodeSeq): NodeSeq =
+    def render(in: NodeSeq): NodeSeq = {
+        logger.info("Rendiring form............")
+        
         SHtml.ajaxForm(
             (
                   "name=submit" #> { submit =>
@@ -34,6 +36,7 @@ abstract class Form[A](
                 & errors.render
             )(in)
         )
+    }
         
     def processAjax(): JsCmd = {
         logger.info("Processing AJAX")
